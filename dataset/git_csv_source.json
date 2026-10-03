@@ -1,0 +1,23 @@
+{
+	"name": "git_csv_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1GithubLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "afrozkhan08200200/AzureDataEngineering/refs/heads/main/employees_20_records.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "run_pipeline_every_30_mins",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 59,
+				"startTime": "2026-09-14T16:01:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

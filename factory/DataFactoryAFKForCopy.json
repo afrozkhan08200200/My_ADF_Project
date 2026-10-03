@@ -1,0 +1,21 @@
+{
+	"name": "DataFactoryAFKForCopy",
+	"properties": {
+		"globalParameters": {
+			"environment": {
+				"type": "string",
+				"value": "dev"
+			}
+		},
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "df166539-74d0-4f73-b177-b3fe40d5b161",
+		"tenantId": "f6a1f974-3da6-4af0-a511-447859fbbff9"
+	}
+}

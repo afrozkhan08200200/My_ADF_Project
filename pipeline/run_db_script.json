@@ -1,0 +1,95 @@
+{
+	"name": "run_db_script",
+	"properties": {
+		"activities": [
+			{
+				"name": "Script1",
+				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "employeeDeptSqlDBLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"parameters": [
+								{
+									"name": "location",
+									"type": "String",
+									"value": {
+										"value": "@pipeline().parameters.pipeline_param_location",
+										"type": "Expression"
+									},
+									"direction": "Input"
+								},
+								{
+									"name": "department_id",
+									"type": "Int16",
+									"value": {
+										"value": "@pipeline().parameters.pipeline_param_department_id",
+										"type": "Expression"
+									},
+									"direction": "Input"
+								}
+							],
+							"type": "NonQuery",
+							"text": "update dbo.department set location = @location  where department_id = @department_id"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Script2",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "employeeDeptSqlDBLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": {
+								"value": "@concat\n('SELECT * FROM [dbo].[employee] where department_id=',pipeline().parameters.pipeline_param_department_id)\n",
+								"type": "Expression"
+							}
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			}
+		],
+		"parameters": {
+			"pipeline_param_location": {
+				"type": "string"
+			},
+			"pipeline_param_department_id": {
+				"type": "int"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-09-19T11:46:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
